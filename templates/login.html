@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <link rel="shortcut icon" href="/static/icon.ico">
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+            }
+
+            h1 {
+                text-align: center;
+                color: #333;
+            }
+
+            form {
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            input[type="submit"] {
+                width: 100%;
+                padding: 10px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #007baa;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hello, please enter your login details below</h1>
+        <form action="/login" method="POST">
+            <p>Name: <input type="text" name="name" pattern="[a-zA-Z0-9_]+" title="you are only allowed letters, numbers, and underscores" /></p>
+            <p>Password: <input type="password" name="password" pattern="[a-zA-Z0-9_]{8,}" title="you are only allowed letters, numbers, and underscores, min length is 8 characters" /></p>
+            <p>Login: <input type="submit" name="loginsubmit" /></p>
+            <p>New user? Sign up with the same credentials now! <input type="submit" name="new" /></p>
+        </form>
+    </body>
+</html>
