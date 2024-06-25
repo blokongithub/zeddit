@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+        }
+        .navbar form {
+            display: flex;
+            align-items: center;
+        }
+        .navbar input[type="text"] {
+            padding: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        .navbar button {
+            padding: 5px 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 3px;
+            background-color: #0094FF;
+            color: white;
+            cursor: pointer;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+            border-radius: 3px;
+        }
+    </style>
+    <script type="text/javascript">
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent the form from submitting the default way
+            var query = document.querySelector('input[name="query"]').value;
+            window.location.href = "/search?query=" + encodeURIComponent(query);
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <form onsubmit="handleFormSubmit(event)">
+            <input type="text" name="query" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+        <div>
+            <a href="/logout">Logout</a>
+            <a href="/profile">Profile</a>
+        </div>
+    </div>
+</body>
+</html>

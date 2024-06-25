@@ -44,7 +44,7 @@ def logout():
 def subzeddit(subzeddit):
     if 'username' not in request.cookies:
         return redirect('/login')
-    return str(backend.getsubzeddit(subzeddit))
+    return str(backend.getsubzeddit(subzeddit)) #raw data
 
 
 @app.route("/u/<username>")
@@ -53,6 +53,36 @@ def user(uuid):
         return redirect('/login')
     return str(backend.getuser(uuid)) #placeholder
 
+@app.route("/")
+def index():
+    if 'username' in request.cookies:
+        resp = make_response(redirect('/login'))
+        return resp
+    resp = make_response(redirect('/home'))
+    return resp
+
+@app.route("/home")
+def home():
+    if 'username' not in request.cookies:
+        return redirect('/login')
+    return render_template('home.html')       
+
+@app.route("/search/", methods=['GET', 'POST'])
+def search():
+    if 'username' not in request.cookies:
+        return redirect('/login')
+    
+    if request.method == 'POST':
+        query = request.form.get('query')
+        return "not used yet"
+    
+    query = request.args.get('query')
+    if not query:
+        return make_response("Error 5, please use the search bar to search for a subzeddit or user")
+    
+    #results = backend.search(query) placeholder
+    return render_template('placeholder.html')
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('placeholder.html'), 404 #placeholder
@@ -60,3 +90,4 @@ def page_not_found(e):
 if __name__ == '__main__':
     backend.initialize()
     app.run(debug=True)
+
