@@ -14,6 +14,26 @@ def getuserid(username):
         print("Error found:", e)
         return None
 
+def getuserinfo(userid):
+    try:
+        with get_db_connection() as dbcon:
+            cursor = dbcon.cursor()
+            cursor.execute("""SELECT * FROM users WHERE id = ?""", (userid,))
+            return cursor.fetchone()
+    except Exception as e:
+        print("Error found:", e)
+        return None
+    
+def getuserposts(userid):
+    try:
+        with get_db_connection() as dbcon:
+            cursor = dbcon.cursor()
+            cursor.execute("""SELECT * FROM posts WHERE user_id = ?""", (userid,))
+            return cursor.fetchall()
+    except Exception as e:
+        print("Error found:", e)
+        return None
+
 def get_db_connection():
     return sqlite3.connect(DATABASE_PATH)
 
@@ -180,12 +200,16 @@ def getposts(link):
         with get_db_connection() as dbcon:
             cursor = dbcon.cursor()
             cursor.execute("""
-                SELECT * FROM posts WHERE subzeddit_link = ?
+                SELECT posts.*, users.username 
+                FROM posts 
+                JOIN users ON posts.user_id = users.id
+                WHERE posts.subzeddit_link = ?
             """, (link,))
             return cursor.fetchall()
     except Exception as e:
         print("Error found:", e)
         return None
+
 
 def search(query):
     try:

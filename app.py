@@ -45,14 +45,16 @@ def logout():
 def subzeddit(subzeddit):
     if 'username' not in request.cookies:
         return redirect('/login')
-    return str(backend.getsubzeddit(subzeddit)) #raw data
+    resp = make_response(render_template('subzeddit.html', subzed = backend.getsubzeddit(subzeddit), posts = backend.getposts(subzeddit))) #TODO
+    return resp
 
 
-@app.route("/u/<username>")
+@app.route("/u/<uuid>")
 def user(uuid):
     if 'username' not in request.cookies:
         return redirect('/login')
-    return str(backend.getuser(uuid)) #placeholder
+    resp = render_template('userprofile.html', user = backend.getuserinfo(uuid), posts = backend.getuserposts(uuid)) #TODO
+    return resp
 
 @app.route("/")
 def index():
@@ -81,9 +83,9 @@ def search():
     if not query:
         return make_response("Error 5, please use the search bar to search for a subzeddit or user")
     
-    #results = backend.search(query) placeholder
+    #results = backend.search(query) TODO
     response = backend.search(query)
-    resp = make_response(str(response)) #placeholder
+    resp = make_response(str(response)) #TODO
     return resp
 
 @app.route("/createsubzeddit", methods=['GET', 'POST'])
@@ -91,7 +93,7 @@ def makezeddit():
     if 'username' not in request.cookies:
         return redirect('/login')
     if request.method == 'GET':
-        resp = make_response(render_template('createsubzeddit.html')) # placeholder
+        resp = make_response(render_template('createsubzeddit.html')) # TODO
         return resp
     if request.method == 'POST':
         if(request.form['link'] != '' and request.form["title"] != "" and request.form['description'] != ''):
@@ -105,10 +107,13 @@ def makezeddit():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('placeholder.html'), 404 #placeholder
+    return render_template('placeholder.html'), 404 #TODO
 
 if __name__ == '__main__':
     backend.initialize()
+    #backend.createuser("admin", "passwordpassword")
+    #backend.createsubzeddit("admin", "admin", "Admin", "Admin subzeddit")
+    #backend.createpost("admin", "admin", "Welcome to Subzeddit", "Welcome to Subzeddit, the best place to share your thoughts and ideas!")
     print(f"✅ Flask server running at http://127.0.0.1:{HOST} ✅")
     app.run(debug=True, port=HOST)
 

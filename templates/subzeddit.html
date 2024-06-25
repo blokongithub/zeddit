@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Placeholder</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                color: #333;
+            }
+            .container {
+                width: 80%;
+                margin: auto;
+                overflow: hidden;
+            }
+            header {
+                background: #333;
+                color: #fff;
+                padding-top: 30px;
+                min-height: 70px;
+                border-bottom: #77aaff 3px solid;
+            }
+            header h1 {
+                text-align: center;
+                text-transform: uppercase;
+                margin: 0;
+                font-size: 24px;
+            }
+            section {
+                padding: 20px;
+                margin-top: 20px;
+                background: #fff;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h2 {
+                color: #333;
+                margin-top: 0;
+            }
+            p {
+                line-height: 1.6;
+            }
+            .posts {
+                margin-top: 30px;
+            }
+            .post {
+                background: #fff;
+                margin-bottom: 20px;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .post h3 {
+                margin-top: 0;
+                color: #444;
+            }
+            .post .post-maker {
+                color: #777;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>{{subzed[0]}} - {{subzed[4]}}</h1>
+            </header>
+            <section>
+                <h2>{{subzed[2]}}</h2>
+                <p>{{subzed[3]}}</p>
+            </section>
+            <section class="posts">
+                <h2>Posts</h2>
+                {% for post in posts %}
+                <div class="post">
+                    <h3>{{ post[3] }}</h3>
+                    <p class="post-maker">by {{ post[6] }}</p>
+                    <p>{{ post[4] }}</p>
+                </div>
+                {% endfor %}
+            </section>
+        </div>
+    </body>
+</html>
