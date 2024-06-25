@@ -186,3 +186,24 @@ def getposts(link):
     except Exception as e:
         print("Error found:", e)
         return None
+
+def search(query):
+    try:
+        with get_db_connection() as dbcon:
+            cursor = dbcon.cursor()
+            cursor.execute("""
+                SELECT * FROM subzeddits WHERE title LIKE ? OR description LIKE ?
+            """, (f"%{query}%", f"%{query}%"))
+            subzeddits = cursor.fetchall()
+            cursor.execute("""
+                SELECT username FROM users WHERE username LIKE ?
+            """, (f"%{query}%",))
+            users = cursor.fetchall()
+            cursor.execute("""
+                SELECT * FROM posts WHERE title LIKE ? OR content LIKE ?
+            """, (f"%{query}%", f"%{query}%"))
+            posts = cursor.fetchall()
+            return subzeddits, users, posts
+    except Exception as e:
+        print("Error found:", e)
+        return None, None

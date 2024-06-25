@@ -1,0 +1,29 @@
+TODO
+    - search results html
+    - Homepage
+    - User profile
+    - subzeddit UI
+
+DOING
+    - Create subzeddit page (i made the app.py thing but i need to make the "template")
+
+
+DONE
+    - Search algorithm
+    - Login/Signup
+
+
+
+IDEAS
+    - karma system
+    - Moderation for zeddits and more options, i.e. banned words
+    - Images in posts
+    - Post to no zeddit
+    - Followers
+    - Porfile pics
+    - Bio for users
+    - Search options
+    - Reccomended algo
+    - upvoteing and downvoting
+    - Comments and subcomments
+    - pinned subzeddit messages

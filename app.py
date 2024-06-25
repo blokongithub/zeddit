@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, render_template, redirect, make_respo
 import backend
 
 app = flask.Flask(__name__)
+HOST = 5000
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -81,7 +82,26 @@ def search():
         return make_response("Error 5, please use the search bar to search for a subzeddit or user")
     
     #results = backend.search(query) placeholder
-    return render_template('placeholder.html')
+    response = backend.search(query)
+    resp = make_response(str(response)) #placeholder
+    return resp
+
+@app.route("/createsubzeddit", methods=['GET', 'POST'])
+def makezeddit():
+    if 'username' not in request.cookies:
+        return redirect('/login')
+    if request.method == 'GET':
+        resp = make_response(render_template('createsubzeddit.html')) # placeholder
+        return resp
+    if request.method == 'POST':
+        if(request.form['link'] != '' and request.form["title"] != "" and request.form['description'] != ''):
+            backend.createsubzeddit(request.form['link'], request.cookies["username"], request.form["title"],  request.form['description'])
+            resp = make_response(redirect(f'/z/{request.form["link"]}'))
+            return resp
+        else:
+            resp = make_response("<html><body><h1>Error 6, please fill out all fields</h1></body></html>")
+            return resp
+    
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -89,5 +109,6 @@ def page_not_found(e):
 
 if __name__ == '__main__':
     backend.initialize()
-    app.run(debug=True)
+    print(f"✅ Flask server running at http://127.0.0.1:{HOST} ✅")
+    app.run(debug=True, port=HOST)
 
