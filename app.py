@@ -114,6 +114,7 @@ if __name__ == '__main__':
     #backend.createuser("admin", "passwordpassword")
     #backend.createsubzeddit("admin", "admin", "Admin", "Admin subzeddit")
     #backend.createpost("admin", "admin", "Welcome to Subzeddit", "Welcome to Subzeddit, the best place to share your thoughts and ideas!")
+    backend.joinsubzeddit("admin", "admin")
     print(f"✅ Flask server running at http://127.0.0.1:{HOST} ✅")
     app.run(debug=True, port=HOST)
 

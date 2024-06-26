@@ -19,7 +19,11 @@ def getuserinfo(userid):
         with get_db_connection() as dbcon:
             cursor = dbcon.cursor()
             cursor.execute("""SELECT * FROM users WHERE id = ?""", (userid,))
-            return cursor.fetchone()
+            info = cursor.fetchone()
+            binary_data =  info[4]
+            json_data = binary_data.decode("utf-8")
+            json_data = json.loads(json_data)
+            return [info[0], info[1], info[3], json_data["subzeddits"]]
     except Exception as e:
         print("Error found:", e)
         return None
@@ -220,7 +224,7 @@ def search(query):
             """, (f"%{query}%", f"%{query}%"))
             subzeddits = cursor.fetchall()
             cursor.execute("""
-                SELECT username FROM users WHERE username LIKE ?
+                SELECT id, username FROM users WHERE username LIKE ?
             """, (f"%{query}%",))
             users = cursor.fetchall()
             cursor.execute("""

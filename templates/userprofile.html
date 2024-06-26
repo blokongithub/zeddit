@@ -1,10 +1,104 @@
-<DOCTYPE html>
-<html>
-    <head>
-        <title>Placeholder</title>
-    </head>
-    <body>
-        <h1>Placeholder</h1>
-        <p>This is a placeholder page.</p>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 24px;
+        }
+        section {
+            padding: 20px;
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .posts {
+            margin-top: 30px;
+        }
+        .post {
+            background: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .post h3 {
+            margin-top: 0;
+            color: #444;
+        }
+        .post .post-maker {
+            color: #777;
+            font-size: 14px;
+        }
+        .subzeddits-list {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>User Profile</h1>
+        </header>
+        <section>
+            <h2>{{ user[1] }}'s Profile</h2>
+            <p>Username: {{ user[1] }}</p>
+            <p>Subzeddits:</p>
+            <ul class="subzeddits-list">
+                {% for subzeddit in user[3] %}
+                    <li><a href="../z/{{subzeddit}}">{{ subzeddit }}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section class="posts">
+            <h2>Posts</h2>
+            <ul>
+                {% for post in posts %}
+                    <li class="post">
+                        <h3>{{ post[1] }} subzeddit</h3>
+                        <h2>{{ post[3] }}</h2>
+                        <p>{{ post[4]}} </p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+</body>
 </html>
