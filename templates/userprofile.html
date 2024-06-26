@@ -23,12 +23,30 @@
             padding-top: 30px;
             min-height: 70px;
             border-bottom: #77aaff 3px solid;
+            position: relative; /* Added to position the button */
         }
         header h1 {
             text-align: center;
             text-transform: uppercase;
             margin: 0;
             font-size: 24px;
+        }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #77aaff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .home-button:hover {
+            background-color: #555;
         }
         section {
             padding: 20px;
@@ -75,6 +93,7 @@
 <body>
     <div class="container">
         <header>
+            <a href="../" class="home-button">Home</a>
             <h1>User Profile</h1>
         </header>
         <section>

@@ -28,6 +28,23 @@
                 margin: 0;
                 font-size: 24px;
             }
+            .home-button {
+                position: absolute;
+                top: 30px;
+                left: 230px;
+                background-color: #77aaff;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-transform: uppercase;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            .home-button:hover {
+                background-color: #555;
+            }
             section {
                 padding: 20px;
                 margin-top: 20px;
@@ -65,6 +82,7 @@
     <body>
         <div class="container">
             <header>
+                <a href="../" class="home-button">Home</a>
                 <h1>{{subzed[0]}} - {{subzed[4]}}</h1>
             </header>
             <section>
