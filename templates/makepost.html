@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Making a post</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,20 +35,22 @@
             background: #fff;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: 20px auto;
         }
         form p {
             margin-bottom: 15px;
         }
         form input[type="text"],
-        form input[type="password"] {
+        form textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
             box-sizing: border-box;
+        }
+        form textarea {
+            height: 150px;
+            resize: vertical;
         }
         form input[type="submit"] {
             background-color: #77aaff;
@@ -59,25 +61,40 @@
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
-            width: 100%;
-            box-sizing: border-box;
         }
         form input[type="submit"]:hover {
             background-color: #555;
+        }
+        .home-button:hover {
+            background-color: #555;
+        }
+        .home-button {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            background-color: #77aaff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Hello, please enter your login details below</h1>
+            <a href="../{{subzeddit}}" class="home-button">Back</a>
+            <h1>Make a post to "{{subzeddit}}"</h1>
         </header>
         <section>
-            <form action="/login" method="POST">
-                <p>Name: <input type="text" name="name" pattern="[a-zA-Z0-9_]+" title="You are only allowed letters, numbers, and underscores" /></p>
-                <p>Password: <input type="password" name="password" pattern="[a-zA-Z0-9_]{8,}" title="You are only allowed letters, numbers, and underscores, min length is 8 characters" /></p>
-                <p>Login: <input type="submit" name="loginsubmit" value="Login" /></p>
-                <p>New user? Sign up with the same credentials now! <input type="submit" name="new" value="Sign Up" /></p>
+            <form method="POST">
+                <p>Title: <input type="text" name="title" /></p>
+                <p>Content: <textarea name="content"></textarea></p>
+                <p><input type="submit" name="submit" /></p>
             </form>
         </section>
     </div>

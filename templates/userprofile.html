@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <style>
         body {
@@ -99,12 +97,7 @@
         <section>
             <h2>{{ user[1] }}'s Profile</h2>
             <p>Username: {{ user[1] }}</p>
-            <p>Subzeddits:</p>
-            <ul class="subzeddits-list">
-                {% for subzeddit in user[3] %}
-                    <li><a href="../z/{{subzeddit}}">{{ subzeddit }}</a></li>
-                {% endfor %}
-            </ul>
+
         </section>
         <section class="posts">
             <h2>Posts</h2>

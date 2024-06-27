@@ -7,6 +7,105 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 24px;
+        }
+        .forum-hyperlink {
+            top: 30px;
+            left: 330px;
+            background-color: #77aaff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .forum-hyperlink:hover {
+            background-color: #555;
+        }
+        .home-button {
+            position: absolute;
+            top: 30px;
+            left: 230px;
+            background-color: #77aaff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .make-post {
+            position: absolute;
+            top: 30px;
+            left: 330px;
+            background-color: #77aaff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .home-button:hover, .make-post:hover {
+            background-color: #555;
+        }
+        section {
+            padding: 20px;
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .posts {
+            margin-top: 30px;
+        }
+        .post {
+            background: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .post h3 {
+            margin-top: 0;
+            color: #444;
+        }
+        .post .post-maker {
+            color: #777;
+            font-size: 14px;
         }
         .navbar {
             display: flex;
@@ -47,7 +146,7 @@
     </style>
     <script type="text/javascript">
         function handleFormSubmit(event) {
-            event.preventDefault(); // Prevent the form from submitting the default way
+            event.preventDefault();
             var query = document.querySelector('input[name="query"]').value;
             window.location.href = "/search?query=" + encodeURIComponent(query);
         }
@@ -64,5 +163,15 @@
             <a href="/profile">Profile</a>
         </div>
     </div>
+    <section class="posts">
+        <h2>Posts</h2>
+        {% for post in posts %}
+        <div class="post">
+            <h3>{{ post[3] }} - <a class="forum-hyperlink" href="/z/{{posts[1][1]}}">{{posts[1][1]}} subzeddit</a></h3>
+            <p class="post-maker">by {{ post[6] }}</p>
+            <p>{{ post[4] }}</p>
+        </div>
+        {% endfor %}
+    </section>
 </body>
 </html>

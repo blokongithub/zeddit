@@ -208,6 +208,7 @@ def getposts(link):
                 FROM posts 
                 JOIN users ON posts.user_id = users.id
                 WHERE posts.subzeddit_link = ?
+                ORDER BY posts.timestamp DESC
             """, (link,))
             return cursor.fetchall()
     except Exception as e:

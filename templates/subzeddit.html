@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
+    <title>subzeddit</title>
     <head>
-        <title>Placeholder</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -42,7 +42,24 @@
                 font-size: 16px;
                 cursor: pointer;
             }
+            .make-post {
+                position: absolute;
+                top: 30px;
+                left: 330px;
+                background-color: #77aaff;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-transform: uppercase;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
             .home-button:hover {
+                background-color: #555;
+            }
+            .make-post:hover {
                 background-color: #555;
             }
             section {
@@ -83,6 +100,7 @@
         <div class="container">
             <header>
                 <a href="../" class="home-button">Home</a>
+                <a href="{{ request.path }}/post" class="make-post">Make a post</a>
                 <h1>{{subzed[0]}} - {{subzed[4]}}</h1>
             </header>
             <section>
@@ -93,6 +111,7 @@
                 <h2>Posts</h2>
                 {% for post in posts %}
                 <div class="post">
+                    
                     <h3>{{ post[3] }}</h3>
                     <p class="post-maker">by {{ post[6] }}</p>
                     <p>{{ post[4] }}</p>
